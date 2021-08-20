@@ -37,20 +37,24 @@ openSecretDoor(new Backend());
 //==============================================================
 
 class Component {
+	isComponent = true;
+}
+
+class ComponentWithTemplate extends Component {
 	render() {
 		return `<div>Component</div>`;
 	}
 }
-
-class HeaderComponent extends Component {
+class HigherOrderComponent extends Component {}
+class HeaderComponent extends ComponentWithTemplate {
 	onInit() {}
 }
 
-class FooterComponent extends Component {
+class FooterComponent extends ComponentWithTemplate {
 	afterInit() {}
 }
 
-class HOC extends Component {
+class HOC extends HigherOrderComponent {
 	render() {
 		throw new Error('Render is impossible here');
 	}
@@ -65,3 +69,4 @@ function renderComponent(component) {
 }
 renderComponent(new HeaderComponent());
 renderComponent(new FooterComponent());
+// renderComponent(new HOC()); // There should be component with template
