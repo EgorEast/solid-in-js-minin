@@ -33,3 +33,35 @@ function openSecretDoor(member) {
 openSecretDoor(new Frontend());
 openSecretDoor(new Backend());
 // openSecretDoor(new PersonFromDifferentCompany()); // There should be member
+
+//==============================================================
+
+class Component {
+	render() {
+		return `<div>Component</div>`;
+	}
+}
+
+class HeaderComponent extends Component {
+	onInit() {}
+}
+
+class FooterComponent extends Component {
+	afterInit() {}
+}
+
+class HOC extends Component {
+	render() {
+		throw new Error('Render is impossible here');
+	}
+	wrapComponent(component) {
+		component.wrapped = true;
+		return component;
+	}
+}
+
+function renderComponent(component) {
+	console.log(component.render());
+}
+renderComponent(new HeaderComponent());
+renderComponent(new FooterComponent());
